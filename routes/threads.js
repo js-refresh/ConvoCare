@@ -25,6 +25,13 @@ router.get('/currentuser', async (req, res) => {
 
 })
 
+// Get single thread by ID
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+  const thread = await models.Thread.findByPk(id)
+  res.status(201).json(thread)
+})
+
 router.post('/', checkAuth, async (req, res) => {
 //   if any fields missing
   if (!req.body.title || !req.body.content) {

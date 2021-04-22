@@ -4,18 +4,30 @@ var router = express.Router();
 const models = require('../models')
 
 
-/* GET journal entries. */
-router.get('/entries', checkAuth, async function(req, res, next) {
+// /* GET journal entries. */
+// router.get('/entries', checkAuth, async function(req, res, next) {
 
-  const journalEntries = await models.Journal.findAll({
-      include: [{
-          model: models.User, 
-          attributes: ['username', 'id']
-      }],
-  })
+//   const journalEntries = await models.Journal.findAll({
+//       include: [{
+//           model: models.User, 
+//           attributes: ['username', 'id']
+//       }],
+//   })
 
-  res.json(journalEntries)
-});
+//   res.json(journalEntries)
+// });
+
+//GET journal entries by current user
+router.get('/currentuser', async (req, res) => {
+  // const { id } = req.params
+  const entry = await models.Journal.findAll({
+      where: {
+          UserId: req.session.user.id
+      }
+  }) 
+  res.status(201).json(entry)
+
+})
 
 // post new entry
 router.post('/', checkAuth, async (req,res) => {
