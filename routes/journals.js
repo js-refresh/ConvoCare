@@ -6,11 +6,10 @@ const models = require('../models')
 
 /* GET journal entries. */
 router.get('/entries', checkAuth, async function(req, res, next) {
-  // TODO get all posts
 
   const journalEntries = await models.Journal.findAll({
       include: [{
-          model: models.Journal, 
+          model: models.User, 
           attributes: ['username', 'id']
       }],
   })
