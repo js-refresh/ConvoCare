@@ -1,7 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Users from './pages/Users';
+import PostThreadCard from './pages/PostThreadCard'
 import Home from './pages/Home';
+
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
          </Route>
          <Route path='/users'>
           <Users/>
+         </Route>
+         <Route path='/thread'>
+          <PostThreadCard />
          </Route>
        </Switch>
        </div>
