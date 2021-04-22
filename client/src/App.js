@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setUser } from './redux/actions';
 import Users from './pages/Users';
+import PostThreadCard from './pages/PostThreadCard'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { Container, Nav } from 'react-bootstrap';
+
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -83,11 +85,15 @@ function App() {
         </Route>
         <Route path='/home'>
           <Home />
-        </Route>
-        <Route path='/users'>
-          <Users />
-        </Route>
-      </Switch>
+         </Route>
+         <Route path='/users'>
+          <Users/>
+         </Route>
+         <Route path='/thread'>
+          <PostThreadCard />
+         </Route>
+       </Switch>
+       </div>     
     </div>
 
   );
