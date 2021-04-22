@@ -1,7 +1,8 @@
 var express = require('express');
-// const checkAuth = require('../auth/checkAuth');
 var router = express.Router();
 const models = require('../models');
+const checkAuth = require('../auth/checkAuth');
+
 
 /* GET posts. */
 router.get('/', async (req, res) => {
@@ -11,6 +12,18 @@ router.get('/', async (req, res) => {
 
   res.json(threads);
 });
+
+// Get posts by user
+router.get('/currentuser', async (req, res) => {
+    // const { id } = req.params
+    const thread = await models.Thread.findAll({
+        where: {
+            UserId: req.session.user.id
+        }
+    }) 
+    res.status(201).json(thread)
+
+})
 
 router.post('/', checkAuth, async (req, res) => {
 //   if any fields missing
@@ -29,7 +42,7 @@ router.post('/', checkAuth, async (req, res) => {
   });
 
   // send back new post data
-  res.status(201).json(post);
+  res.status(201).json(thread);
 });
 
 // router.post('/:id/comments', async (req, res) => {
@@ -46,5 +59,7 @@ router.post('/', checkAuth, async (req, res) => {
 //   });
 //   res.status(201).json(comment);
 // })
+
+
 
 module.exports = router;
