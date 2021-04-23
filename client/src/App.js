@@ -7,8 +7,26 @@ import PostThreadCard from './pages/PostThreadCard'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { Container, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import Journal from './pages/Journal';
+import BipolarAdult from './pages/BipolarAdult';
+import AnxietyAdult from './pages/AnxietyAdult';
+import BorderlinePersonality from './pages/BorderlinePersonality';
+import DepressionAdult from './pages/DepressionAdult';
+import EatingDisorders from './pages/EatingDisorders';
+import OCD from './pages/OCD';
+import PTSD from './pages/PTSD';
+import SchizophreniaAdult from './pages/SchizophreniaAdult';
+import SuicidePreventionAdult from './pages/SuicidePreventionAdult';
+import ADHD from './pages/ADHD';
+import AnxietyChildren from './pages/AnxietyChildren';
+import Autism from './pages/Autism';
+import BipolarChildren from './pages/BipolarChildren';
+import DepressionChildren from './pages/DepressionChildren';
+import LearningDisabilities from './pages/LearningDisabilities';
+import Tourettes from './pages/Tourettes';
+import SuicidePreventionChildren from './pages/SuicidePreventionChildren';
+import SchizophreniaChildren from './pages/SchizophreniaChildren';
 
 
 function App() {
@@ -85,14 +103,71 @@ function App() {
         </Route>
         <Route path='/home'>
           <Home />
-         </Route>
-         <Route path='/journal'>
+        </Route>
+        <Route path='/journal'>
           <Journal/>
-         </Route>
-         <Route path='/thread'>
+        </Route>
+        <Route path='/thread'>
           <PostThreadCard />
-         </Route>
-       </Switch>
+        </Route>         
+        <Route path='/anxietyadult'>
+          <AnxietyAdult />
+        </Route>
+        <Route path='/bipolaradult'>
+          <BipolarAdult />
+        </Route>
+        <Route path='/borderlinepersonality'>
+          <BorderlinePersonality />
+        </Route>
+        <Route path='/depressionadult'>
+          <DepressionAdult />
+        </Route>
+        <Route path='/eatingdisorders'>
+          <EatingDisorders />
+        </Route>
+        <Route path='/ocd'>
+          <OCD />
+        </Route>
+        <Route path='/ptsd'>
+          <PTSD />
+        </Route>
+        <Route path='/schizophreniaadult'>
+          <SchizophreniaAdult />
+        </Route>
+        <Route path='/suicidepreventionadult'>
+          <SuicidePreventionAdult />
+        </Route>
+        <Route path='/adhd'>
+          <ADHD />
+        </Route>
+        <Route path='/anxietychildren'>
+          <AnxietyChildren />
+        </Route>
+        <Route path='/autism'>
+          <Autism />
+        </Route>
+        <Route path='/bipolarchildren'>
+          <BipolarChildren/>
+        </Route>
+        <Route path='/bipolaradult'>
+          <BipolarAdult />
+        </Route>
+        <Route path='/depressionchildren'>
+          <DepressionChildren />
+        </Route>
+        <Route path='/learningdisabilities'>
+          <LearningDisabilities />
+        </Route>
+        <Route path='/schizophreniachildren'>
+          <SchizophreniaChildren />
+        </Route>
+        <Route path='/suicidepreventionchildren'>
+          <SuicidePreventionChildren />
+        </Route>
+        <Route path='/tourettes'>
+          <Tourettes />
+        </Route>
+      </Switch>
     </div>
   )
 }
