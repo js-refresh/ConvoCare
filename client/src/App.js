@@ -3,12 +3,12 @@ import { Link, NavLink, Redirect, Route, Switch, useHistory } from 'react-router
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setUser } from './redux/actions';
-import Users from './pages/Users';
 import PostThreadCard from './pages/PostThreadCard'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { Container, Nav } from 'react-bootstrap';
+import Journal from './pages/Journal';
 
 
 function App() {
@@ -86,17 +86,15 @@ function App() {
         <Route path='/home'>
           <Home />
          </Route>
-         <Route path='/users'>
-          <Users/>
+         <Route path='/journal'>
+          <Journal/>
          </Route>
          <Route path='/thread'>
           <PostThreadCard />
          </Route>
        </Switch>
-       </div>     
     </div>
-
-  );
+  )
 }
 
 export default App;
