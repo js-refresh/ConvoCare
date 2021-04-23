@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { Container, Nav } from 'react-bootstrap';
 import Journal from './pages/Journal';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -86,13 +87,17 @@ function App() {
         <Route path='/home'>
           <Home />
          </Route>
-         <Route path='/journal'>
+          {userStatus === 'LOADING' && 'Loading...'}
+          {userStatus === 'CHECKED' && (
+         <ProtectedRoute path='/journal'>
           <Journal/>
-         </Route>
+         </ProtectedRoute>
+          )}
          <Route path='/thread'>
           <PostThreadCard />
          </Route>
        </Switch>
+     
     </div>
   )
 }
