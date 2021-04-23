@@ -41,7 +41,7 @@ router.post('/', checkAuth, async (req,res) => {
   }
 
   // check to make sure all fields are filled
-  if ((!req.body.description || !req.body.content || !req.body.mood)) {
+  if ((!req.body.description || !req.body.content)) {
       // if missing field, send 400 error (unacceptable)
       return res.status(400).json({
           error: 'Please fill out all fields.'
@@ -57,6 +57,36 @@ router.post('/', checkAuth, async (req,res) => {
   })
       // send back new post data
       res.status(201).json(journalEntry)
+})
+
+// UPDATE ENTRY
+router.put('/:id', (req,res)=>{
+  if (!req.body || !req.body.author || !req.body.title || !req.body.content || !req.body.publish) {
+    res.status(400).json({
+      error: 'Enter all fields',
+    });
+    return;
+  }
+  models.Journal.update({
+    description: req.body.description,
+    content: req.body.content,
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(updated => {
+    if(updated && updated[0] === 1){
+      res.status(202).json({
+        success: 'Post Updated'
+      })
+
+    } else {
+      res.status(404).json({
+        error: 'Post not found'
+      })
+    }
+  })
 })
 
 module.exports = router;

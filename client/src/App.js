@@ -27,6 +27,7 @@ import LearningDisabilities from './pages/LearningDisabilities';
 import Tourettes from './pages/Tourettes';
 import SuicidePreventionChildren from './pages/SuicidePreventionChildren';
 import SchizophreniaChildren from './pages/SchizophreniaChildren';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -104,11 +105,15 @@ function App() {
         <Route path='/home'>
           <Home />
         </Route>
-        <Route path='/journal'>
+          {userStatus === 'LOADING' && 'Loading...'}
+          {userStatus === 'CHECKED' && (
+         <ProtectedRoute path='/journal'>
           <Journal/>
-        </Route>
-        <Route path='/thread'>
+         </ProtectedRoute>
+          )}
+         <Route path='/thread'>
           <PostThreadCard />
+         </Route>
         </Route>         
         <Route path='/anxietyadult'>
           <AnxietyAdult />
