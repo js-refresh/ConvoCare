@@ -5,15 +5,11 @@ var logger = require('morgan');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const models = require('./models');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var threadsRouter = require('./routes/threads');
 // var commentsRouter = require('./routes/comments');
 var journalsRouter = require('./routes/journals');
-
-
-
 
 var app = express();
 const store = new SequelizeStore({ db: models.sequelize });

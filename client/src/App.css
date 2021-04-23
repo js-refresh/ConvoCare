@@ -1,0 +1,62 @@
+/***********************************************************************/
+/**************************** Navbar **********************************/
+/***********************************************************************/
+
+.navbar {  
+  background-color: navy;
+  text-align: center;
+  display: flex;
+  flex-direction: column;  
+}
+
+.nav-link {
+  justify-content: space-between;
+  color: white;
+  text-align: center;
+}
+
+.nav-link:hover {
+  color:aquamarine;
+}
+
+
+/***********************************************************************/
+/**************************** Sidebar **********************************/
+/***********************************************************************/
+
+.sidebar-container {
+  border: 1px solid black;
+  width: fit-content;  
+  align-self: flex-start;
+  margin-left: 10px;
+  background-color: rgb(226, 226, 177);
+  border-radius: 10px;
+}
+
+.sidebar-buttons {
+  width: 15vw;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: navy;
+}
+
+/***********************************************************************/
+/**************************** Page Styling *****************************/
+/***********************************************************************/
+
+.page-header{
+  text-align: center;
+  color: white;
+  background-color: navy;  
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.page-container {
+  padding-left: 30px;
+  padding-right: 150px;
+}
