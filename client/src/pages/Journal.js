@@ -11,15 +11,22 @@ import {
 import { useHistory } from "react-router";
 import "./Journal.css";
 
+//TODO only show form if edit button was clicked
+//TODO update models and migrations from string to text for journals and threads
+
 export default function Journal() {
 //   let cardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const history = useHistory();
   const [show, setShow] = useState(false);
+  const [activeEntry, setActiveEntry] = useState({description: '', content: ''})
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [showEntry, setShowEntry] = useState(false);
   const handleCloseEntry = () => setShowEntry(false);
-  const handleShowEntry = () => setShowEntry(true);
+  const handleShowEntry = (entry) => {
+    setShowEntry(true)
+    setActiveEntry(entry)
+  }
 
   const [journalEntries, setJournalEntries] = useState([]);
   // const [threads, setThreads ] = useState([])
@@ -73,8 +80,12 @@ export default function Journal() {
         if (data.error) {
           alert(data.error);
         } else {
-          history.push("/");
-        }
+          fetch("/api/v1/journals/currentuser")
+          .then((res) => res.json())
+          .then((data) => {
+            setJournalEntries(data);
+          });
+          }
       });
   };
 
@@ -96,6 +107,9 @@ export default function Journal() {
             style={{ border: "solid black 1px" }}
           >
             <h1>My Journal</h1>
+            <h4>Write about whatever you'd like: your day, your thoughts,
+              what you've been working on. You can check these over time.
+            </h4>
             <div style={{ marginTop: "25px" }}>
               <div>
                 <Button
@@ -171,11 +185,13 @@ export default function Journal() {
                     // replace card array with journal entries from backend tied to user
                     <Card style={{ width: "100%", marginBottom: "5px" }}>
                       <Card.Body>
-                        <Card.Title onClick={handleShowEntry}>
-                          {entry.description}
+                        <Card.Title onClick={() => handleShowEntry(entry)}>
+                          {entry.description + '' + entry.createdAt}
                         </Card.Title>
                         <Card.Text>{entry.content}</Card.Text>
                       </Card.Body>
+                    </Card>
+                  ))}
                       <Modal
                         size="lg"
                         show={showEntry}
@@ -183,9 +199,9 @@ export default function Journal() {
                         aria-labelledby="example-modal-sizes-title-lg"
                       >
                         <Modal.Header closeButton>
-                          <Modal.Title>{entry.description}</Modal.Title>
+                          <Modal.Title>{activeEntry.description}</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>{entry.content}</Modal.Body>
+                        <Modal.Body>{activeEntry.content}</Modal.Body>
                         <Modal.Footer>
                           <Button variant="secondary" onClick={handleCloseEntry}>
                             Exit
@@ -199,8 +215,6 @@ export default function Journal() {
                           </Button>
                         </Modal.Footer>
                       </Modal>
-                    </Card>
-                  ))}
                 </Card.Body>
               </Card>
             </div>

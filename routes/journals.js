@@ -23,7 +23,8 @@ router.get('/currentuser', async (req, res) => {
   const entry = await models.Journal.findAll({
       where: {
           UserId: req.session.user.id
-      }
+      },
+      order: [["createdAt", "DESC"]]
   }) 
   res.status(201).json(entry)
 
@@ -61,7 +62,7 @@ router.post('/', checkAuth, async (req,res) => {
 
 // UPDATE ENTRY
 router.put('/:id', (req,res)=>{
-  if (!req.body || !req.body.author || !req.body.title || !req.body.content || !req.body.publish) {
+  if (!req.body.description || !req.body.content) {
     res.status(400).json({
       error: 'Enter all fields',
     });
