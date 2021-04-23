@@ -14,23 +14,23 @@ export default function Sidebar() {
             Adult Mental Health Topics
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem href="">Anxiety Disorders</DropdownItem>
+            <DropdownItem href="/anxietyadult">Anxiety Disorders</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Bi-polar Disorder</DropdownItem>
+            <DropdownItem href="/bipolaradult">Bi-polar Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Borderline Personality Disorder</DropdownItem>
+            <DropdownItem href="/borderlinepersonality">Borderline Personality Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Depression</DropdownItem>
+            <DropdownItem href="/depressionadult">Depression</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Eating Disorders</DropdownItem>
+            <DropdownItem href="/eatingdisorders">Eating Disorders</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Obsessive-compulsive Disorders</DropdownItem>
+            <DropdownItem href="/ocd">Obsessive-compulsive Disorders</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Post-traumatic stress Disorders</DropdownItem>
+            <DropdownItem href="/ptsd">Post-traumatic stress Disorders</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Schizophrenia</DropdownItem>
+            <DropdownItem href="/schizophreniaadult">Schizophrenia</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Suicide prevention</DropdownItem>
+            <DropdownItem href="/suicidepreventionadult">Suicide prevention</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         <Dropdown>
@@ -38,23 +38,23 @@ export default function Sidebar() {
             Child and Adolescent Mental Health Topics
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem href="">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
+            <DropdownItem href="/adhd">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Anxiety Disorder</DropdownItem>
+            <DropdownItem href="/anxietychildren">Anxiety Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Autism Spectrum Disorder</DropdownItem>
+            <DropdownItem href="/autism">Autism Spectrum Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Bi-polar Disorder</DropdownItem>
+            <DropdownItem href="/bipolarchildren">Bi-polar Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Depression</DropdownItem>
+            <DropdownItem href="/depressionchildren">Depression</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Learning Disabilities</DropdownItem>
+            <DropdownItem href="/learningdisabilities">Learning Disabilities</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Schizophrenia</DropdownItem>
+            <DropdownItem href="/schizophreniachildren">Schizophrenia</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Suicide Prevention</DropdownItem>
+            <DropdownItem href="/suicidepreventionchildren">Suicide Prevention</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Tourette's and Tic Disorders</DropdownItem>
+            <DropdownItem href="/tourettes">Tourette's and Tic Disorders</DropdownItem>
           </DropdownMenu>
         </Dropdown>        
         <Dropdown xs={6}>
