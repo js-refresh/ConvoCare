@@ -8,6 +8,7 @@ const checkAuth = require('../auth/checkAuth');
 router.get('/', async (req, res) => {
   const threads = await models.Thread.findAll({
     include: [{ model: models.User, attributes: ['username', 'id'] }],
+    order: [["createdAt", "DESC"]]
   });
 
   res.json(threads);
@@ -19,7 +20,8 @@ router.get('/currentuser', async (req, res) => {
     const thread = await models.Thread.findAll({
         where: {
             UserId: req.session.user.id
-        }
+        }, 
+        order: [["createdAt", "DESC"]]
     }) 
     res.status(201).json(thread)
 
