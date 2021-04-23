@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router';
+import "./Journal.css";
 
 
 export default function Thread() {
     let cardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+
+    const history = useHistory();
     const [form, setForm] = useState({
         title: '',
         content: '',
@@ -13,10 +16,12 @@ export default function Thread() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
-    const history = useHistory();
-
+    const [showEntry, setShowEntry] = useState(false);
+    const handleCloseEntry = () => setShowEntry(false);
+    const handleShowEntry = () => setShowEntry(true);
+    // const [threadEntries, setThreadEntries] = useState([]);
+    const [journalEntries, setJournalEntries]= useState([]);
+    // console.log(threadEntries)
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -37,13 +42,28 @@ export default function Thread() {
         })
             .then((res) => res.json())
             .then((data) => {
+                console.log(data)
                 if (data.error) {
                     alert(data.error);
                 } else {
+                    // setThreadEntries(data)
+                    fetch("/api/v1/threads")
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setJournalEntries(data);
+                    });
                     alert('thread created')
                 }
             });
     };
+
+    useEffect(() => {
+        fetch("/api/v1/threads")
+            .then((res) => res.json())
+            .then((data) => {
+                setJournalEntries(data);
+            });
+    }, []);
 
     return (
         <div>
@@ -69,36 +89,81 @@ export default function Thread() {
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Form onSubmit={handleSubmit}>
-                                        <Form.Group controlId="formBasicTitle">
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
                                             <Form.Label>Thread Title</Form.Label>
-                                            <Form.Control type="title" placeholder='Please title your entry.' as="textarea" rows={1} />
+                                            <Form.Control placeholder='Title goes here.'
+                                                as="textarea"
+                                                rows={1}
+                                                name="title"
+                                                onChange={handleChange}
+                                                value={form.title}
+                                            />
                                             <br />
                                             <Form.Label>Public question or comment</Form.Label>
                                             <Form.Control type='content' placeholder='Start writing about whatever
-                                            youd like!'as="textarea" rows={3} />
+                                            youd like!'
+                                                as="textarea"
+                                                rows={3}
+                                                name="content"
+                                                onChange={handleChange}
+                                                value={form.content}
+                                            />
                                         </Form.Group>
+                                        <Button variant="secondary" onClick={handleClose}>
+                                            Cancel
+                                        </Button>
+                                        <Button variant="primary"
+                                            onClick={handleClose}
+                                            type="submit">
+                                            Post
+                                    </Button>
                                     </Form>
+
                                 </Modal.Body>
                                 <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        Cancel
-                                </Button>
-                                    <Button variant="primary" onClick={handleSubmit}>
-                                        Post
-                                </Button>
+                                   
                                 </Modal.Footer>
                             </Modal>
-                            <Card style={{ height: '65vh', width: '100%', marginTop: '25px', marginBottom: '25px' }}>
+                            <Card style={{
+                                height: '65vh',
+                                width: '100%',
+                                marginTop: '25px',
+                                marginBottom: '25px'
+                            }}>
                                 <Card.Body style={{ overflowY: 'scroll' }}>
-                                    {cardArray.map((entry) =>
-                                        // replace card array with journal entries from backend tied to user
+                                    {journalEntries.map((entry) =>
+                                        // replace card array with thread entries from backend tied to user
                                         <Card style={{ width: '100%', marginBottom: '5px' }}>
                                             <Card.Body>
-                                                <Card.Title>Thread Title</Card.Title>
+                                                <Card.Title onClick={handleShowEntry}>{entry.title}
+                                                </Card.Title>
                                                 <Card.Text>
-                                                    Thread Content
-                                    </Card.Text>
+                                                    {entry.content}
+                                                </Card.Text>
                                             </Card.Body>
+                                            <Modal
+                                                size="lg"
+                                                show={showEntry}
+                                                onHide={() => setShowEntry(false)}
+                                                aria-labelledby="example-modal-sizes-title-lg"
+                                            >
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title>{entry.title}</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>{entry.content}</Modal.Body>
+                                                <Modal.Footer>
+                                                    <Button variant="secondary" onClick={handleCloseEntry}>
+                                                        Exit
+                                                </Button>
+                                                    <Button
+                                                        variant="primary"
+                                                        type="submit"
+                                                        onClick={handleCloseEntry}
+                                                    >
+                                                        Edit your entry.
+                                                    </Button>
+                                                </Modal.Footer>
+                                            </Modal>
                                         </Card>
                                     )}
                                 </Card.Body>
