@@ -2,7 +2,7 @@ import React from 'react'
 import Disclaimer from '../components/Disclaimer'
 import Sidebar from '../components/Sidebar'
 
-export default function DepressionChildren() {
+export default function Depression() {
   return (
     <div>
       <div>
@@ -11,7 +11,7 @@ export default function DepressionChildren() {
           <Sidebar />
           <div className="page-container">
 
-            <h3>What is Depression in Children?</h3>
+            <h3>What is Depression in Adults?</h3>
 
             <Disclaimer />
           </div>

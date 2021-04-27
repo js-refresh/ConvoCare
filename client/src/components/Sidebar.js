@@ -11,52 +11,38 @@ export default function Sidebar() {
         <h4>Mental Health Links</h4>
         <Dropdown>
           <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
-            Adult Mental Health Topics
+            Mental Health Topics
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem href="/anxietyadult">Anxiety Disorders</DropdownItem>
+            <DropdownItem href="/adhd">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="/bipolaradult">Bi-polar Disorder</DropdownItem>
+            <DropdownItem href="/anxiety">Anxiety Disorders</DropdownItem>
+            <Dropdown.Divider />
+            <DropdownItem href="/autism">Autism Spectrum Disorder</DropdownItem>
+            <Dropdown.Divider />
+            <DropdownItem href="/bipolar">Bi-polar Disorder</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/borderlinepersonality">Borderline Personality Disorder</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="/depressionadult">Depression</DropdownItem>
+            <DropdownItem href="/depression">Depression</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/eatingdisorders">Eating Disorders</DropdownItem>
+            <Dropdown.Divider />
+            <DropdownItem href="/learningdisabilities">Learning Disabilities</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/ocd">Obsessive-compulsive Disorders</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/ptsd">Post-traumatic stress Disorders</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="/schizophreniaadult">Schizophrenia</DropdownItem>
+            <DropdownItem href="/schizophrenia">Schizophrenia</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="/suicidepreventionadult">Suicide prevention</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <Dropdown>
-          <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
-            Child and Adolescent Mental Health Topics
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem href="/adhd">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
+            <DropdownItem href="/suicideprevention">Suicide prevention</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="/anxietychildren">Anxiety Disorder</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/autism">Autism Spectrum Disorder</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/bipolarchildren">Bi-polar Disorder</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/depressionchildren">Depression</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/learningdisabilities">Learning Disabilities</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/schizophreniachildren">Schizophrenia</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/suicidepreventionchildren">Suicide Prevention</DropdownItem>
+            <DropdownItem href="/substanceuse">Substance Use Disorder</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/tourettes">Tourette's and Tic Disorders</DropdownItem>
           </DropdownMenu>
-        </Dropdown>        
+        </Dropdown>               
         <Dropdown xs={6}>
           <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
             Links to get help
