@@ -69,10 +69,7 @@ function App() {
           <Nav.Item>
             {user ? (
               <>
-                <span className='username'>
-                  {user.username}
-                </span>
-                <br />
+                {/* <br /> */}
                 <NavLink className="nav-link" variant="danger" to="/login" onClick={logout}>
                   Logout
                 </NavLink>

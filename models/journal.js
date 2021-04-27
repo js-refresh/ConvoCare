@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Journal.init({
     description: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: DataTypes.TEXT,
     mood: DataTypes.STRING,
     UserId: DataTypes.INTEGER
   }, {
