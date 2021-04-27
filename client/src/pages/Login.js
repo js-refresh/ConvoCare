@@ -46,7 +46,7 @@ export default function Login() {
   return (
     <Paper elevation={3}>
       <Form onSubmit={handleSubmit}>
-        <Grid container>
+        <Grid container style={{textAlign: 'center'}}>
           <Grid item xs={12}>
             <TextField
               label="Username"

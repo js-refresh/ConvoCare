@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Thread.init({
     title: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: DataTypes.TEXT,
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

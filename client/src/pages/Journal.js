@@ -8,27 +8,61 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import { useHistory } from "react-router";
 import "./Journal.css";
+import {ReactComponent as Book} from '../images/book.svg'
 
 //TODO only show form if edit button was clicked
 //TODO update models and migrations from string to text for journals and threads
 
 export default function Journal() {
-//   let cardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const history = useHistory();
+  const [journalEntries, setJournalEntries] = useState([]);
   const [show, setShow] = useState(false);
-  const [activeEntry, setActiveEntry] = useState({description: '', content: ''})
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [activeEntry, setActiveEntry] = useState({ description: '', content: '', id: null })
   const [showEntry, setShowEntry] = useState(false);
   const handleCloseEntry = () => setShowEntry(false);
   const handleShowEntry = (entry) => {
     setShowEntry(true)
     setActiveEntry(entry)
+    setEditForm({description: entry.description, content: entry.content})
   }
 
-  const [journalEntries, setJournalEntries] = useState([]);
+  const [form, setForm] = useState({
+    description: "",
+    content: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // editing journal posts
+  const [isEdit, setIsEdit] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const handleEditFormClose = () => setShowEditForm(false);
+  const handleEditFormShow = () => {
+    setShowEditForm(true);
+    setShowEntry(false)
+    setIsEdit(true)
+  }
+  
+  const [editForm, setEditForm] = useState({
+    description: '',
+    content: '',
+  });
+
+  const handleEditChange = (e) => {
+      setEditForm({
+        ...editForm,
+        [e.target.name]: e.target.value,
+      });
+  }
+  
+
   // const [threads, setThreads ] = useState([])
   // const [rightSide, setRightSide ] = useState({})
 
@@ -51,17 +85,6 @@ export default function Journal() {
   //         })
   // }, [])
 
-  const [form, setForm] = useState({
-    description: "",
-    content: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,14 +104,49 @@ export default function Journal() {
           alert(data.error);
         } else {
           fetch("/api/v1/journals/currentuser")
-          .then((res) => res.json())
-          .then((data) => {
-            setJournalEntries(data);
-          });
-          }
+            .then((res) => res.json())
+            .then((data) => {
+              setJournalEntries(data);
+            });
+        }
       });
   };
 
+  // const handleEditButton = () => {
+  //   console.log('click')
+  //   setShowEntry(false)
+  //   setIsEdit(true)
+  // }
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    console.log(activeEntry.id)
+    fetch(`/api/v1/journals/${activeEntry.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        description: editForm.description,
+        content: editForm.content,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          fetch("/api/v1/journals/currentuser")
+          .then((res) => res.json())
+          .then((data) => {
+            setJournalEntries(data);
+            setShowEditForm(false)
+          });
+        }
+      });
+  };
+
+  // fetch journal entries by current user, after logged in, on component render
   useEffect(() => {
     fetch("/api/v1/journals/currentuser")
       .then((res) => res.json())
@@ -98,7 +156,7 @@ export default function Journal() {
   }, []);
 
   return (
-    <div>
+    <div style={{margin: '25px'}}>
       <Container>
         <Row>
           <Col
@@ -108,8 +166,9 @@ export default function Journal() {
           >
             <h1>My Journal</h1>
             <h4>Write about whatever you'd like: your day, your thoughts,
-              what you've been working on. You can check these over time.
+            what you've been working on. 
             </h4>
+            <h4>Over time, you will have a</h4>
             <div style={{ marginTop: "25px" }}>
               <div>
                 <Button
@@ -119,12 +178,9 @@ export default function Journal() {
                   New entry
                 </Button>
                 {
-                  // button will open up modal for new entry
+                  // button opens modal for new entry
                 }
               </div>
-              {
-                // new modal post
-              }
               <Modal
                 size="lg"
                 show={show}
@@ -177,50 +233,104 @@ export default function Journal() {
                   height: "65vh",
                   width: "100%",
                   marginTop: "25px",
-                  marginBottom: "25px",
+                  marginBottom: "25px"
                 }}
               >
                 <Card.Body style={{ overflowY: "scroll" }}>
+                {journalEntries.length <= 0 ? <Book style={{display: 'block', margin: 'auto', width: '100%', height: '100%'}}/> : <p></p>}
                   {journalEntries.map((entry) => (
-                    // replace card array with journal entries from backend tied to user
-                    <Card style={{ width: "100%", marginBottom: "5px" }}>
+                    <Card key={entry.id} style={{ backgroundColor: 'rgba(255,255,255,0.95)', width: "100%", marginBottom: "5px" }}>
                       <Card.Body>
                         <Card.Title onClick={() => handleShowEntry(entry)}>
-                          {entry.description + '' + entry.createdAt}
+                          {entry.description} <span style={{float: 'right'}}>{new Date(entry.updatedAt).toString().split(' ').splice(0,4).join(' ')}</span>
                         </Card.Title>
+                       
                         <Card.Text>{entry.content}</Card.Text>
                       </Card.Body>
                     </Card>
                   ))}
-                      <Modal
-                        size="lg"
-                        show={showEntry}
-                        onHide={() => setShowEntry(false)}
-                        aria-labelledby="example-modal-sizes-title-lg"
-                      >
-                        <Modal.Header closeButton>
-                          <Modal.Title>{activeEntry.description}</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>{activeEntry.content}</Modal.Body>
-                        <Modal.Footer>
-                          <Button variant="secondary" onClick={handleCloseEntry}>
-                            Exit
+                  <Modal
+                    size="lg"
+                    show={showEntry}
+                    onHide={() => setShowEntry(false)}
+                    aria-labelledby="example-modal-sizes-title-lg"
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title>{activeEntry.description}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{activeEntry.content}</Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={handleCloseEntry}>
+                        Exit
                           </Button>
+                      <Button
+                        variant="primary"
+                        onClick={handleEditFormShow}
+                      >
+                        Edit your entry.
+                          </Button>
+                    </Modal.Footer>
+                  </Modal>
+
+                    {/*
+                    ---
+                    EDITING MODAL BELOW
+                    ---
+                    */}
+
+                  {isEdit &&                
+                      <Modal
+                      size="lg"
+                      show={showEditForm}
+                      onHide={handleEditFormClose}
+                      aria-labelledby="example-modal-sizes-title-lg"
+                      >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Edit Journal Entry</Modal.Title>
+                      </Modal.Header>
+                      <Form onSubmit={handleEditSubmit}>
+                        <Modal.Body>
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                              // placeholder="Please title your entry."
+                              as="textarea"
+                              rows={1}
+                              name="description"
+                              onChange={handleEditChange}
+                              value={editForm.description}
+                            />
+                            <Form.Label>Entry</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows={3}
+                              name="content"
+                              onChange={handleEditChange}
+                              value={editForm.content}
+                            />
+                          </Form.Group>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="secondary" onClick={handleEditFormClose}>
+                            Cancel
+                    </Button>
                           <Button
                             variant="primary"
                             type="submit"
-                            onClick={handleCloseEntry}
+                            onClick={handleClose}
                           >
-                            Edit your entry.
-                          </Button>
+                            Save your entry
+                    </Button>
                         </Modal.Footer>
-                      </Modal>
+                      </Form>
+                    </Modal>
+                    }
                 </Card.Body>
               </Card>
             </div>
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 }
