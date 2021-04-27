@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button, Card, Col, Container, Form, Modal, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router';
 import "./Journal.css";
+import "./thread.css";
+
 
 
 export default function Thread() {
     let cardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
+    const [activeEntry, setActiveEntry] = useState({ content: '' })
     const history = useHistory();
     const [form, setForm] = useState({
         title: '',
@@ -18,13 +20,26 @@ export default function Thread() {
     const handleShow = () => setShow(true);
     const [showEntry, setShowEntry] = useState(false);
     const handleCloseEntry = () => setShowEntry(false);
-    const handleShowEntry = () => setShowEntry(true);
+    const handleShowEntry = (entry) => {
+        setShowEntry(true);
+        setEditForm({content: entry.content})
+        setActiveEntry(entry);
+    }
+    const [editForm, setEditForm] = useState({
+        content: '',
+    });
     // const [threadEntries, setThreadEntries] = useState([]);
-    const [journalEntries, setJournalEntries]= useState([]);
+    const [journalEntries, setJournalEntries] = useState([]);
     // console.log(threadEntries)
     const handleChange = (e) => {
         setForm({
             ...form,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleEditChange = (e) => {
+        setEditForm({
+            ...editForm,
             [e.target.name]: e.target.value,
         });
     };
@@ -48,11 +63,40 @@ export default function Thread() {
                 } else {
                     // setThreadEntries(data)
                     fetch("/api/v1/threads")
-                    .then((res) => res.json())
-                    .then((data) => {
-                        setJournalEntries(data);
-                    });
+                        .then((res) => res.json())
+                        .then((data) => {
+                            setJournalEntries(data);
+                        });
                     alert('thread created')
+                }
+            });
+    };
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+        fetch(`/api/v1/threads/${activeEntry.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content: editForm.content,
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    setShowEntry(false);
+                    // setThreadEntries(data)
+                    fetch("/api/v1/threads")
+                        .then((res) => res.json())
+                        .then((data) => {
+                            setJournalEntries(data);
+                        });
+                    alert('thread updated')
                 }
             });
     };
@@ -67,14 +111,15 @@ export default function Thread() {
 
     return (
         <div>
+            <br></br>
             <Container>
                 <Row >
-                    <Col className='user-profile-column' md={12} style={{ border: 'solid black 1px' }}>
+                    <Col className='user-profile-column' md={12} style={{ border: 'solid black 3px' }}>
                         <h1>ConvoCare Forum</h1>
                         <p>Ask the community or share stories</p>
                         <div style={{ marginTop: '25px' }}>
-                            <div>
-                                <Button onClick={handleShow} style={{ float: 'right', marginBottom: '15px' }}>Post a New Thread</Button>
+                            <div className="Button">
+                                <Button onClick={handleShow} style={{ float: 'right', marginBottom: '15px', color: 'gold', }}>Post a New Thread</Button>
                                 {// button will open up modal for new entry
                                 }
                             </div>
@@ -121,7 +166,7 @@ export default function Thread() {
 
                                 </Modal.Body>
                                 <Modal.Footer>
-                                   
+
                                 </Modal.Footer>
                             </Modal>
                             <Card style={{
@@ -133,39 +178,51 @@ export default function Thread() {
                                 <Card.Body style={{ overflowY: 'scroll' }}>
                                     {journalEntries.map((entry) =>
                                         // replace card array with thread entries from backend tied to user
-                                        <Card style={{ width: '100%', marginBottom: '5px' }}>
+                                        <Card key={entry.id} style={{ width: '100%', marginBottom: '5px' }}>
                                             <Card.Body>
-                                                <Card.Title onClick={handleShowEntry}>{entry.title}
+                                                <Card.Title onClick={()=>handleShowEntry(entry)}>{entry.title}
                                                 </Card.Title>
                                                 <Card.Text>
                                                     {entry.content}
                                                 </Card.Text>
                                             </Card.Body>
+                                        </Card>
+                                    )}
                                             <Modal
                                                 size="lg"
                                                 show={showEntry}
                                                 onHide={() => setShowEntry(false)}
                                                 aria-labelledby="example-modal-sizes-title-lg"
                                             >
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>{entry.title}</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>{entry.content}</Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={handleCloseEntry}>
-                                                        Exit
-                                                </Button>
-                                                    <Button
-                                                        variant="primary"
-                                                        type="submit"
-                                                        onClick={handleCloseEntry}
-                                                    >
-                                                        Edit your entry.
+                                                <Form onSubmit={handleEdit}>
+                                                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                                                        {/* <Form.Label>Thread Title</Form.Label>
+                                                        <Form.Control placeholder='Title goes here.'
+                                                            as="textarea"
+                                                            rows={1}
+                                                            name="title"
+                                                            onChange={handleChange}
+                                                            value={form.title}
+                                                        />
+                                                        <br /> */}
+                                                        <Form.Label>Public question or comment</Form.Label>
+                                                        <Form.Control type='content' 
+                                                            as="textarea"
+                                                            rows={3}
+                                                            name="content"
+                                                            onChange={handleEditChange}
+                                                            value={editForm.content}
+                                                        />
+                                                    </Form.Group>
+                                                    <Button variant="secondary" onClick={handleClose}>
+                                                        Cancel
                                                     </Button>
-                                                </Modal.Footer>
+                                                    <Button variant="primary"
+                                                        type="submit">
+                                                        Edit Post
+                                                    </Button>
+                                                </Form>
                                             </Modal>
-                                        </Card>
-                                    )}
                                 </Card.Body>
                             </Card>
                         </div>

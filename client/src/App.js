@@ -114,7 +114,6 @@ function App() {
          <Route path='/thread'>
           <PostThreadCard />
          </Route>
-        </Route>         
         <Route path='/anxietyadult'>
           <AnxietyAdult />
         </Route>
