@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Thread.belongsTo(models.User);
+      Thread.hasMany(models.Comment);
       // define association here
     }
   };
