@@ -9,25 +9,21 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { Nav } from 'react-bootstrap';
 import Journal from './pages/Journal';
-import BipolarAdult from './pages/BipolarAdult';
-import AnxietyAdult from './pages/AnxietyAdult';
+import Bipolar from './pages/Bipolar';
+import Anxiety from './pages/Anxiety';
 import BorderlinePersonality from './pages/BorderlinePersonality';
-import DepressionAdult from './pages/DepressionAdult';
+import Depression from './pages/Depression';
 import EatingDisorders from './pages/EatingDisorders';
 import OCD from './pages/OCD';
 import PTSD from './pages/PTSD';
-import SchizophreniaAdult from './pages/SchizophreniaAdult';
-import SuicidePreventionAdult from './pages/SuicidePreventionAdult';
+import Schizophrenia from './pages/Schizophrenia';
+import SuicidePrevention from './pages/SuicidePrevention';
 import ADHD from './pages/ADHD';
-import AnxietyChildren from './pages/AnxietyChildren';
 import Autism from './pages/Autism';
-import BipolarChildren from './pages/BipolarChildren';
-import DepressionChildren from './pages/DepressionChildren';
 import LearningDisabilities from './pages/LearningDisabilities';
 import Tourettes from './pages/Tourettes';
-import SuicidePreventionChildren from './pages/SuicidePreventionChildren';
-import SchizophreniaChildren from './pages/SchizophreniaChildren';
 import ProtectedRoute from './components/ProtectedRoute';
+import SubstanceUse from './pages/SubstanceUse';
 
 
 function App() {
@@ -86,8 +82,8 @@ function App() {
               </>
             )}
           </Nav.Item>
-
         </Nav>
+        
       </div>
       <Switch>
         <Route path='/' exact>
@@ -104,24 +100,24 @@ function App() {
         </Route>
           {userStatus === 'LOADING' && 'Loading...'}
           {userStatus === 'CHECKED' && (
-         <ProtectedRoute path='/journal'>
+        <ProtectedRoute path='/journal'>
           <Journal/>
-         </ProtectedRoute>
+        </ProtectedRoute>
           )}
-         <Route path='/thread'>
+        <Route path='/thread'>
           <PostThreadCard />
-         </Route>
-        <Route path='/anxietyadult'>
-          <AnxietyAdult />
+        </Route>               
+        <Route path='/anxiety'>
+          <Anxiety />
         </Route>
-        <Route path='/bipolaradult'>
-          <BipolarAdult />
+        <Route path='/bipolar'>
+          <Bipolar />
         </Route>
         <Route path='/borderlinepersonality'>
           <BorderlinePersonality />
         </Route>
-        <Route path='/depressionadult'>
-          <DepressionAdult />
+        <Route path='/depression'>
+          <Depression />
         </Route>
         <Route path='/eatingdisorders'>
           <EatingDisorders />
@@ -132,39 +128,24 @@ function App() {
         <Route path='/ptsd'>
           <PTSD />
         </Route>
-        <Route path='/schizophreniaadult'>
-          <SchizophreniaAdult />
+        <Route path='/schizophrenia'>
+          <Schizophrenia />
         </Route>
-        <Route path='/suicidepreventionadult'>
-          <SuicidePreventionAdult />
+        <Route path='/suicideprevention'>
+          <SuicidePrevention />
+        </Route>
+        <Route path='/substanceuse'>
+          <SubstanceUse />
         </Route>
         <Route path='/adhd'>
           <ADHD />
-        </Route>
-        <Route path='/anxietychildren'>
-          <AnxietyChildren />
-        </Route>
+        </Route>        
         <Route path='/autism'>
           <Autism />
-        </Route>
-        <Route path='/bipolarchildren'>
-          <BipolarChildren/>
-        </Route>
-        <Route path='/bipolaradult'>
-          <BipolarAdult />
-        </Route>
-        <Route path='/depressionchildren'>
-          <DepressionChildren />
-        </Route>
+        </Route>       
         <Route path='/learningdisabilities'>
           <LearningDisabilities />
-        </Route>
-        <Route path='/schizophreniachildren'>
-          <SchizophreniaChildren />
-        </Route>
-        <Route path='/suicidepreventionchildren'>
-          <SuicidePreventionChildren />
-        </Route>
+        </Route>        
         <Route path='/tourettes'>
           <Tourettes />
         </Route>
