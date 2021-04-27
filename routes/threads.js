@@ -80,20 +80,33 @@ router.put('/:id', (req, res) => {
   })
 })
 
-// router.post('/:id/comments', async (req, res) => {
-//   const thread = await models.Thread.findByPk(req.params.id)
-//   if (!thread) {
-//     res.status(404).json({
-//       error: "Could not find post with that id"
-//     })
-//   } 
-//   thread.createComment({
-//     content: req.body.content,
-//     ThreadId: req.params.id,
-//     UserId: req.session.user.id,
-//   });
-//   res.status(201).json(comment);
-// })
+router.post('/:id/comments', checkAuth, async (req, res) => {
+  const thread = await models.Thread.findByPk(req.params.id)
+  if (!thread) {
+    res.status(404).json({
+      error: "Could not find post with that id"
+    })
+  } 
+  const comment = await thread.createComment({
+    comment: req.body.comment,
+    ThreadId: req.params.id,
+    UserId: req.session.user.id,
+  });
+  res.status(201).json(comment);
+})
+
+router.get('/:id/comments', async (req,res) => {
+  const thread = await models.Thread.findByPk(req.params.id)
+    if(!thread){
+      res.status(404).json({
+        error: 'Could not find post with that id'
+      })
+    }
+
+    const comments = await thread.getComments();
+
+    res.json(comments)
+})
 
 
 

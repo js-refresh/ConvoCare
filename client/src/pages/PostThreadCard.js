@@ -7,7 +7,6 @@ import "./thread.css";
 
 
 export default function Thread() {
-    let cardArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     const [activeEntry, setActiveEntry] = useState({ content: '' })
     const history = useHistory();
@@ -28,6 +27,10 @@ export default function Thread() {
     const [editForm, setEditForm] = useState({
         content: '',
     });
+    const [comments, setComments] = useState([]);
+    const [commentForm, setCommentForm] = useState({
+        comment: '',
+    });
     // const [threadEntries, setThreadEntries] = useState([]);
     const [journalEntries, setJournalEntries] = useState([]);
     // console.log(threadEntries)
@@ -40,6 +43,12 @@ export default function Thread() {
     const handleEditChange = (e) => {
         setEditForm({
             ...editForm,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleCommentChange = (e) => {
+        setCommentForm({
+            ...commentForm,
             [e.target.name]: e.target.value,
         });
     };
@@ -100,6 +109,28 @@ export default function Thread() {
                 }
             });
     };
+    const handleCommentSubmit = (e) => {
+        e.preventDefault();
+        fetch(`/api/v1/threads/${activeEntry.id}/comments`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                comment: commentForm.comment,
+            })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert('comment created')
+                    setComments(data);
+                }
+            })
+    }
+
 
     useEffect(() => {
         fetch("/api/v1/threads")
@@ -144,7 +175,7 @@ export default function Thread() {
                                                 value={form.title}
                                             />
                                             <br />
-                                            <Form.Label>Public question or comment</Form.Label>
+                                            <Form.Label>Public question or story</Form.Label>
                                             <Form.Control type='content' placeholder='Start writing about whatever
                                             youd like!'
                                                 as="textarea"
@@ -160,7 +191,7 @@ export default function Thread() {
                                         <Button variant="primary"
                                             onClick={handleClose}
                                             type="submit">
-                                            Post
+                                            Post Thread
                                     </Button>
                                     </Form>
 
