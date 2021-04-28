@@ -9,24 +9,25 @@ import {
   Row,
 } from "react-bootstrap";
 import "./Journal.css";
-import {ReactComponent as Book} from '../images/book.svg'
-
-//TODO only show form if edit button was clicked
-//TODO update models and migrations from string to text for journals and threads
+import { ReactComponent as Book } from "../images/book.svg";
 
 export default function Journal() {
   const [journalEntries, setJournalEntries] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [activeEntry, setActiveEntry] = useState({ description: '', content: '', id: null })
+  const [activeEntry, setActiveEntry] = useState({
+    description: "",
+    content: "",
+    id: null,
+  });
   const [showEntry, setShowEntry] = useState(false);
   const handleCloseEntry = () => setShowEntry(false);
   const handleShowEntry = (entry) => {
-    setShowEntry(true)
-    setActiveEntry(entry)
-    setEditForm({description: entry.description, content: entry.content})
-  }
+    setShowEntry(true);
+    setActiveEntry(entry);
+    setEditForm({ description: entry.description, content: entry.content });
+  };
 
   const [form, setForm] = useState({
     description: "",
@@ -46,22 +47,21 @@ export default function Journal() {
   const handleEditFormClose = () => setShowEditForm(false);
   const handleEditFormShow = () => {
     setShowEditForm(true);
-    setShowEntry(false)
-    setIsEdit(true)
-  }
-  
+    setShowEntry(false);
+    setIsEdit(true);
+  };
+
   const [editForm, setEditForm] = useState({
-    description: '',
-    content: '',
+    description: "",
+    content: "",
   });
 
   const handleEditChange = (e) => {
-      setEditForm({
-        ...editForm,
-        [e.target.name]: e.target.value,
-      });
-  }
-  
+    setEditForm({
+      ...editForm,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   // const [threads, setThreads ] = useState([])
   // const [rightSide, setRightSide ] = useState({})
@@ -84,7 +84,6 @@ export default function Journal() {
   //             setThreads(data)
   //         })
   // }, [])
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -120,7 +119,7 @@ export default function Journal() {
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    console.log(activeEntry.id)
+    console.log(activeEntry.id);
     fetch(`/api/v1/journals/${activeEntry.id}`, {
       method: "PUT",
       headers: {
@@ -137,11 +136,11 @@ export default function Journal() {
           alert(data.error);
         } else {
           fetch("/api/v1/journals/currentuser")
-          .then((res) => res.json())
-          .then((data) => {
-            setJournalEntries(data);
-            setShowEditForm(false)
-          });
+            .then((res) => res.json())
+            .then((data) => {
+              setJournalEntries(data);
+              setShowEditForm(false);
+            });
         }
       });
   };
@@ -156,19 +155,29 @@ export default function Journal() {
   }, []);
 
   return (
-    <div style={{margin: '25px'}}>
+    <div style={{ margin: "25px" }}>
       <Container>
         <Row>
           <Col
             className="user-profile-column"
             md={12}
-            style={{ border: "solid black 1px" }}
+            style={{
+              boxShadow:
+                "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+            }}
           >
-            <h1>My Journal</h1>
-            <h4>Write about whatever you'd like: your day, your thoughts,
-            what you've been working on. 
-            </h4>
-            <h4>Over time, you will have a</h4>
+            <h1 style={{ color: "#026296" }}>My Journal</h1>
+            <div className="blurb">
+              <h4>
+                This is your space to write about whatever you'd like: your day,
+                your thoughts, what you've been working on.
+              </h4>
+              <br></br>
+              <h4>
+                Research suggests positive impacts on mental health by
+                maintaining a journal.
+              </h4>
+            </div>
             <div style={{ marginTop: "25px" }}>
               <div>
                 <Button
@@ -181,6 +190,9 @@ export default function Journal() {
                   // button opens modal for new entry
                 }
               </div>
+              {
+                // NEW JOURNAL ENTRY MODAL
+              }
               <Modal
                 size="lg"
                 show={show}
@@ -195,17 +207,18 @@ export default function Journal() {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Label>Description</Form.Label>
                       <Form.Control
-                        placeholder="Please title your entry."
+                        placeholder="Please provide a description"
                         as="textarea"
                         rows={1}
                         name="description"
                         onChange={handleChange}
                         value={form.description}
                       />
-                      <Form.Label>Entry</Form.Label>
+                      <Form.Label style={{ paddingTop: "5px" }}>
+                        Entry
+                      </Form.Label>
                       <Form.Control
-                        placeholder="Start writing about whatever
-                                            youd like!"
+                        placeholder="Write about anything you'd like!"
                         as="textarea"
                         rows={3}
                         name="content"
@@ -228,27 +241,60 @@ export default function Journal() {
                   </Modal.Footer>
                 </Form>
               </Modal>
+              {
+                // CONTAINER CARD FOR MAPPED ENTRIES
+              }
               <Card
                 style={{
                   height: "65vh",
                   width: "100%",
                   marginTop: "25px",
-                  marginBottom: "25px"
+                  marginBottom: "25px",
                 }}
               >
                 <Card.Body style={{ overflowY: "scroll" }}>
-                {journalEntries.length <= 0 ? <Book style={{display: 'block', margin: 'auto', width: '100%', height: '100%'}}/> : <p></p>}
+                  {
+                    //JOURNAL ENTRIES MAP BELOW
+                  }
+                  {journalEntries.length <= 0 ? (
+                    <Book
+                      style={{
+                        display: "block",
+                        margin: "auto",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  ) : (
+                    <p></p>
+                  )}
                   {journalEntries.map((entry) => (
-                    <Card key={entry.id} style={{ backgroundColor: 'rgba(255,255,255,0.95)', width: "100%", marginBottom: "5px" }}>
-                      <Card.Body>
-                        <Card.Title onClick={() => handleShowEntry(entry)}>
-                          {entry.description} <span style={{float: 'right'}}>{new Date(entry.updatedAt).toString().split(' ').splice(0,4).join(' ')}</span>
+                    <Card
+                      key={entry.id}
+                      style={{
+                        backgroundColor: "rgba(255,255,255,0.95)",
+                        width: "100%",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      <Card.Body onClick={() => handleShowEntry(entry)}>
+                        <Card.Title>
+                          {entry.description}
+                          <span style={{ float: "right" }}>
+                            {new Date(entry.updatedAt)
+                              .toString()
+                              .split(" ")
+                              .splice(0, 4)
+                              .join(" ")}
+                          </span>
                         </Card.Title>
-                       
                         <Card.Text>{entry.content}</Card.Text>
                       </Card.Body>
                     </Card>
                   ))}
+                  {
+                    // DISPLAYING ENTRY MODAL
+                  }
                   <Modal
                     size="lg"
                     show={showEntry}
@@ -262,29 +308,26 @@ export default function Journal() {
                     <Modal.Footer>
                       <Button variant="secondary" onClick={handleCloseEntry}>
                         Exit
-                          </Button>
-                      <Button
-                        variant="primary"
-                        onClick={handleEditFormShow}
-                      >
+                      </Button>
+                      <Button variant="primary" onClick={handleEditFormShow}>
                         Edit your entry.
-                          </Button>
+                      </Button>
                     </Modal.Footer>
                   </Modal>
 
-                    {/*
+                  {/*
                     ---
                     EDITING MODAL BELOW
                     ---
                     */}
 
-                  {isEdit &&                
-                      <Modal
+                  {isEdit && (
+                    <Modal
                       size="lg"
                       show={showEditForm}
                       onHide={handleEditFormClose}
                       aria-labelledby="example-modal-sizes-title-lg"
-                      >
+                    >
                       <Modal.Header closeButton>
                         <Modal.Title>Edit Journal Entry</Modal.Title>
                       </Modal.Header>
@@ -300,7 +343,9 @@ export default function Journal() {
                               onChange={handleEditChange}
                               value={editForm.description}
                             />
-                            <Form.Label>Entry</Form.Label>
+                            <Form.Label style={{ marginTop: "5px" }}>
+                              Entry
+                            </Form.Label>
                             <Form.Control
                               as="textarea"
                               rows={3}
@@ -311,26 +356,29 @@ export default function Journal() {
                           </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                          <Button variant="secondary" onClick={handleEditFormClose}>
+                          <Button
+                            variant="secondary"
+                            onClick={handleEditFormClose}
+                          >
                             Cancel
-                    </Button>
+                          </Button>
                           <Button
                             variant="primary"
                             type="submit"
                             onClick={handleClose}
                           >
                             Save your entry
-                    </Button>
+                          </Button>
                         </Modal.Footer>
                       </Form>
                     </Modal>
-                    }
+                  )}
                 </Card.Body>
               </Card>
             </div>
           </Col>
         </Row>
       </Container>
-    </div >
+    </div>
   );
 }
