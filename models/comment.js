@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const models = require('./user');
+
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     /**
@@ -11,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Comment.belongsTo(models.Thread);
-      Comment.belongsTo(models.User); 
+      Comment.belongsTo(models.User);
+      
       // define association here
     }
   };
@@ -23,5 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Comment',
   });
-  return Comment;
+  return Comment
 };

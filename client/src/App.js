@@ -3,7 +3,7 @@ import { Link, NavLink, Redirect, Route, Switch, useHistory } from 'react-router
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setUser } from './redux/actions';
-import PostThreadCard from './pages/PostThreadCard'
+import Thread from './pages/Thread'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -105,7 +105,7 @@ function App() {
         </ProtectedRoute>
           )}
         <Route path='/thread'>
-          <PostThreadCard />
+          <Thread />
         </Route>               
         <Route path='/anxiety'>
           <Anxiety />
