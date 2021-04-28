@@ -12,7 +12,7 @@ export default function ADHD() {
           <Sidebar />
           <div className="page-container">
 
-            <h3>What is Attention-Deficit / Hyperactivity Disorder (ADHD)?</h3>
+            <h3>Attention-Deficit / Hyperactivity Disorder (ADHD)</h3>
             <p>
               Attention-deficit/hyperactivity disorder (ADHD) is a disorder marked by an ongoing pattern of inattention and/or hyperactivity-impulsivity that interferes with functioning or development.
             </p>

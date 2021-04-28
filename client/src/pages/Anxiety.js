@@ -13,7 +13,7 @@ export default function Anxiety() {
         <Sidebar />
         <div className="page-container">
 
-          <h3>What is Anxiety?</h3>
+          <h3>Anxiety</h3>
           <p>
             Occasional anxiety is an expected part of life.  You might feel anxious when faced with a problem at work, before taking a test, or before making an important decision.  Bu anxiety disorders involve more than temporary worry or fear.  For a person with an anxiety disorder, the anxiety does not go away and can get worse over time.  The symptoms can interfere with daily activities such as job performance, school work, and relationships.
           </p>
