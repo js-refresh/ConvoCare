@@ -1,3 +1,9 @@
 .user-profile-column {
     height: 100%
 }
+
+.blurb {
+    float: left;
+    margin-right: 150px;
+    margin-top: 20px;
+}

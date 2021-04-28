@@ -71,6 +71,7 @@ router.put('/:id', (req, res) => {
       })
     } else {
       thread.update({
+        title: req.body.title,
         content: req.body.content
       })
       .then((result) => {
@@ -104,8 +105,19 @@ router.get('/:id/comments', async (req,res) => {
     }
 
     const comments = await thread.getComments();
-
-    res.json(comments)
+    const resObject = await Promise.all(comments.map(async (comment) => {
+      const user = await comment.getUser()
+      return Object.assign(
+        {},
+        {
+          comment: comment.comment,
+          username: user.username,
+          createdAt: comment.createdAt
+        })
+      }))
+      res.json(resObject)
+    // res.json(users)
+    // res.json(comments)
 })
 
 
