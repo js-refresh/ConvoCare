@@ -101,9 +101,10 @@
 .note {
   border: 1px solid black;
   font-size: x-small;
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: rgb(226, 226, 177);
+  background-color: rgba(245, 243, 243, 0.966);
 }
 
 .footnote {
@@ -115,3 +116,9 @@
   color: white;
   float: right
 }
+
+.image-container {
+  justify-content: space-between;
+  display: flex;  
+}
+
