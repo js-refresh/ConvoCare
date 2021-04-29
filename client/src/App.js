@@ -23,7 +23,9 @@ import Autism from './pages/Autism';
 import LearningDisabilities from './pages/LearningDisabilities';
 import Tourettes from './pages/Tourettes';
 import ProtectedRoute from './components/ProtectedRoute';
-import SubstanceUse from './pages/SubstanceUse';
+import VeteranLinks from './pages/VeteranLinks';
+import MentalHealthLinks from './pages/MentalHealthLinks';
+
 
 
 function App() {
@@ -133,10 +135,7 @@ function App() {
         </Route>
         <Route path='/suicideprevention'>
           <SuicidePrevention />
-        </Route>
-        <Route path='/substanceuse'>
-          <SubstanceUse />
-        </Route>
+        </Route>        
         <Route path='/adhd'>
           <ADHD />
         </Route>        
@@ -149,6 +148,12 @@ function App() {
         <Route path='/tourettes'>
           <Tourettes />
         </Route>
+        <Route path='/mentalhealthlinks'>
+          <MentalHealthLinks />
+        </Route>
+        <Route path='/veteranlinks'>
+          <VeteranLinks />
+        </Route>        
       </Switch>
     </div>
   )

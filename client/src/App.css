@@ -120,3 +120,14 @@
   display: flex;  
 }
 
+.veteran-footer {
+  display: flex;
+  font-family:'Times New Roman', Times, serif;
+  background-color: lightskyblue;
+  padding-left: 10px;
+}
+
+.american-flag-img {
+  height: 300px;    
+}
+
