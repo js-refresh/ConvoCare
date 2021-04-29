@@ -116,10 +116,12 @@ export default function Thread() {
               setThreadEntries(data);
               setShowEditForm(false);
             });
+
           alert("thread updated");
         }
       });
   };
+
 
   useEffect(() => {
     fetch("/api/v1/threads")

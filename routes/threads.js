@@ -8,7 +8,10 @@ const db = require('../models');
 /* GET posts. */
 router.get('/', async (req, res) => {
   const threads = await models.Thread.findAll({
-    include: [{ model: models.User, attributes: ['username', 'id'] }],
+    include: [
+      { model: models.User, attributes: ['username', 'id'] },
+      { model: models.Comment }
+    ],
     order: [["createdAt", "DESC"]]
   });
 

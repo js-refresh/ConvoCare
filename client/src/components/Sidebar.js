@@ -37,9 +37,7 @@ export default function Sidebar() {
             <DropdownItem href="/schizophrenia">Schizophrenia</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/suicideprevention">Suicide prevention</DropdownItem>
-            <Dropdown.Divider />
-            <DropdownItem href="/substanceuse">Substance Use Disorder</DropdownItem>
-            <Dropdown.Divider />
+            <Dropdown.Divider />            
             <DropdownItem href="/tourettes">Tourette's and Tic Disorders</DropdownItem>
           </DropdownMenu>
         </Dropdown>               
@@ -48,10 +46,9 @@ export default function Sidebar() {
             Links to get help
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem href="">Veteran Self Help Training Course</DropdownItem>
+            <DropdownItem href="/mentalhealthlinks">Mental Health Links</DropdownItem>
             <Dropdown.Divider />
-            <DropdownItem href="">Disability Rights</DropdownItem>
-            <Dropdown.Divider />
+            <DropdownItem href="/veteranlinks">Veteran Links</DropdownItem>                       
           </DropdownMenu>
         </Dropdown>
 

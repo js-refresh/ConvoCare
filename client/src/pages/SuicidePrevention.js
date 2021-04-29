@@ -149,7 +149,7 @@ export default function SuicidePrevention() {
               <a href="https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/information-clozapine" target="blank">Clozapine</a> is an antipsychotic medication used primarily to treat individuals with schizophrenia. To date, it is the only medication with a specific U.S. Food and Drug Administration (FDA) indication for reducing the risk of recurrent suicidal behavior in patients with schizophrenia or schizoaffective disorder.
             </p>
             <p>
-              If you are prescribed a medication, be sure y
+              If you are prescribed a medication, be sure you:
             </p>
             <ul>
               <li>Talk with your doctor or a pharmacist to make sure you understand the risks and benefits of the medications you're taking.</li>
