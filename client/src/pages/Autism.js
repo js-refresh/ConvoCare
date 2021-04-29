@@ -12,7 +12,7 @@ export default function Autism() {
           <Sidebar />
           <div className="page-container">
 
-            <h3>What is Autism Spectrum Disorder?</h3>
+            <h3>Autism Spectrum Disorder</h3>
             <p>
               Autism spectrum disorder (ASD) is a developmental disorder that affects communication and behavior. Although autism can be diagnosed at any age, it is said to be a “developmental disorder” because symptoms generally appear in the first two years of life.
             </p>
