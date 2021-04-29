@@ -166,30 +166,34 @@ export default function Journal() {
                 "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
             }}
           >
-            <h1 style={{ color: "#026296" }}>My Journal</h1>
-            <div className="blurb">
-              <h4>
-                This is your space to write about whatever you'd like: your day,
-                your thoughts, what you've been working on.
-              </h4>
-              <br></br>
-              <h4>
-                Research suggests positive impacts on mental health by
-                maintaining a journal.
-              </h4>
-            </div>
-            <div style={{ marginTop: "25px" }}>
-              <div>
-                <Button
-                  onClick={handleShow}
-                  style={{ float: "right", marginBottom: "15px" }}
-                >
-                  New entry
-                </Button>
-                {
-                  // button opens modal for new entry
-                }
+            <div>
+              <h1 style={{ color: "#026296" }}>My Journal</h1>
+             
+              <div className="blurb">
+                <h4 style={{margin: '0 auto', textAlign: 'center', width: '700px', maxWidth: '100%'}}>
+                  This is your space to write about whatever you'd like: your day,
+                  your thoughts, what you've been working on.
+                </h4>
               </div>
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%'}}>
+              <div className='svg'>
+                <Book
+                  style={{
+                    width: "auto",
+                    height: "150px",
+                  }}
+                />
+              </div>
+                  <Button
+                    onClick={handleShow}
+                    style={{marginBottom: "20px" }}
+                  >
+                    New entry
+                  </Button>
+              </div>  
+                  {
+                    // button opens modal for new entry
+                  }
               {
                 // NEW JOURNAL ENTRY MODAL
               }
@@ -248,7 +252,6 @@ export default function Journal() {
                 style={{
                   height: "65vh",
                   width: "100%",
-                  marginTop: "25px",
                   marginBottom: "25px",
                 }}
               >

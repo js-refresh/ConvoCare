@@ -10,10 +10,10 @@ export default function Sidebar() {
       <Container className='sidebar-container'>
         <h4>Mental Health Links</h4>
         <Dropdown>
-          <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
+          <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic' >
             Mental Health Topics
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu style={{ overflowY: "scroll" }}>
             <DropdownItem href="/adhd">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/anxiety">Anxiety Disorders</DropdownItem>

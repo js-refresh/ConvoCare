@@ -1,6 +1,11 @@
 import React from 'react'
 import Disclaimer from '../components/Disclaimer'
 import Sidebar from '../components/Sidebar'
+import './Home.css'
+import { ReactComponent as Journal } from "../images/journal.svg";
+import { ReactComponent as Community } from "../images/community.svg";
+import { ReactComponent as Resources } from "../images/resources.svg";
+
 
 export default function Home() {
   return (
@@ -9,7 +14,28 @@ export default function Home() {
       <div className="page-wrapper">
         <Sidebar />
         <div className="page-container">
-          
+          <h3 style={{textAlign: 'center'}}>What does ConvoCare offer?</h3>
+          <div className='row' style={{marginBottom: '25px'}}>
+            <div className='column'><Resources className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
+              <h5 style={{justifyContent: 'center', display: 'flex'}}>Resources</h5>
+              <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
+                We host well-documented topic pages for mental health.
+              </h6> 
+            </div>
+            <div className='column'>
+              <Community className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
+              <h5 style={{justifyContent: 'center', display: 'flex'}}>Community</h5>
+              <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
+                Our ConvoCare Forum provide a welcome space to connect with our community. 
+              </h6>
+            </div>
+            <div className='column'><Journal className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
+              <h5 style={{justifyContent: 'center', display: 'flex'}}>Introspection</h5>
+              <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
+                We offer a private journal for you to document anything you'd like. 
+              </h6> 
+            </div>
+          </div>
           <h3>What is Mental Health?</h3>
           <p>Mental health includes our emotional, psychological, and social well-being. It affects how we think, feel, and act. It also helps determine how we handle stress, relate to others, and make choices. Mental health is important at every stage of life, from childhood and adolescence through adulthood.
 

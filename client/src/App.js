@@ -63,7 +63,7 @@ function App() {
             <Link className="nav-link" to="/home">Home</Link>
           </Nav.Item>
           <Nav.Item>
-            <Link className="nav-link" to="/thread">Thread</Link>
+            <Link className="nav-link" to="/thread">Forum</Link>
           </Nav.Item>
           <Nav.Item>
             <Link className="nav-link" to="/journal">Journal</Link>

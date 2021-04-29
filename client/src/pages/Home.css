@@ -1,0 +1,15 @@
+.column {
+  width: 33.33%;
+  /* height: 45% */
+}
+
+.row {
+  margin-top: 30px;
+}
+
+/* .home-svg {
+  width: "50%";
+  height: "40%";
+  display: "block";
+  margin: "auto";
+} */
