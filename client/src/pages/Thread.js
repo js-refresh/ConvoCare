@@ -200,6 +200,11 @@ export default function Thread() {
                                                 <Card.Text>
                                                     {entry.content}
                                                 </Card.Text>
+                                                <Card.Text>
+                                                    <span style={{ float: "right" }}>
+                                                        Comments: { entry.Comments.length }
+                                                    </span>
+                                                </Card.Text>
                                             </Card.Body>
                                         </Card>
                                     )}

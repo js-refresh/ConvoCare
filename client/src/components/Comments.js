@@ -97,8 +97,8 @@ export default function Comments(props) {
           </form>
         ) : (
           <Button
-            variant="contained"
             color="primary"
+            variant="contained"
             onClick={() => setShowForm(!showForm)}
             style={{float: 'right', marginBottom: '20px'}}
           >

@@ -1,3 +1,45 @@
+# ConvoCare
+
+ConvoCare is a web application built to raise awareness about mental health and to provide:
+* Community Forum for open discussion and questions
+* Journal to capture personal thoughts, moods, or feelings. 
+* Resources for where to get help
+
+The name ConvoCare is short for Conversation and Care, since the reason for this website is to start the Conversation about mental health and get it taken Care of, if necessary. 
+
+Website creators are Michael Moore, Chris Miller, and Joshua Sartin.
+<br><br>
+## Installation
+
+To run as a developer, from the main folder... 
+```bash
+npm install
+```
+
+in main folder to run backend, go to the terminal and run:
+```bash
+npm run dev
+```
+
+to run frontent, in the terminal, change into the client folder and run:
+```bash
+npm start
+```
+
+## Technologies Used
+React.js, JavaScript, HTML, CSS, PostgreSQL, Beekeeper, Insomnia, Node.js, React-Bootstrap, Material-UI, and deployed via Heroku. 
+
+
+## Feedback 
+
+Feedback is welcome. If you have improvement ideas, let us know.
+<br> <br> <br> <br> <br> 
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
