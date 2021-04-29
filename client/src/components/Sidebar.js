@@ -8,9 +8,9 @@ export default function Sidebar() {
   return (
     <div>
       <Container className='sidebar-container'>
-        <h4>Mental Health Links</h4>
+        <h6>Mental Health Links</h6>
         <Dropdown>
-          <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
+          <DropdownToggle className='sidebar-buttons' variant="secondary btn-sm" id='dropdown-basic'>
             Mental Health Topics
           </DropdownToggle>
           <DropdownMenu>
@@ -42,8 +42,8 @@ export default function Sidebar() {
           </DropdownMenu>
         </Dropdown>               
         <Dropdown xs={6}>
-          <DropdownToggle className='sidebar-buttons' variant="secondary btn-md" id='dropdown-basic'>
-            Links to get help
+          <DropdownToggle className='sidebar-buttons' variant="secondary btn-sm" id='dropdown-basic'>
+            Helpful Links 
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem href="/mentalhealthlinks">Mental Health Links</DropdownItem>
