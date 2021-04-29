@@ -13,7 +13,7 @@ export default function Sidebar() {
           <DropdownToggle className='sidebar-buttons' variant="secondary btn-sm" id='dropdown-basic'>
             Mental Health Topics
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu style={{ overflowY: "scroll" }}>
             <DropdownItem href="/adhd">Attention Deficit Hyperactivity Disorders (ADHD)</DropdownItem>
             <Dropdown.Divider />
             <DropdownItem href="/anxiety">Anxiety Disorders</DropdownItem>
