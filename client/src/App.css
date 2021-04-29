@@ -132,4 +132,8 @@
 .american-flag-img {
   height: 300px;    
 }
+.row {
+  display: flexbox;
+  justify-content: space-between;
+}
 
