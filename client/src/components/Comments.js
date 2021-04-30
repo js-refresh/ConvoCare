@@ -2,6 +2,7 @@
 import { Button, TextField } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
+import './comments.css';
 
 export default function Comments(props) {
   const [showForm, setShowForm] = useState(false);
@@ -87,9 +88,9 @@ export default function Comments(props) {
             />
             <br />
             <Button 
-              type="submit" 
+              type="submit"
               variant="contained" 
-              color="primary"
+              className="Button"
               style={{float: 'right', marginTop: '20px', marginBottom: '20px'}}
             >
               Submit
@@ -97,7 +98,7 @@ export default function Comments(props) {
           </form>
         ) : (
           <Button
-            color="primary"
+            className="Button"
             variant="contained"
             onClick={() => setShowForm(!showForm)}
             style={{float: 'right', marginBottom: '20px'}}
