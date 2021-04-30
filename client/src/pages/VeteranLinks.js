@@ -9,7 +9,6 @@ export default function VeteranLinks() {
   return (
     <div>
       <div>
-        <h1 className="page-header">Breaking the silence of Mental Health</h1>
         <div className="page-wrapper">
           <Sidebar />
           <div className="page-container">

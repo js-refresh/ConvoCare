@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Modal,
-  Row,
-} from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import Comments from "../components/Comments";
 import "./thread.css";
 import { ReactComponent as Friends } from "../images/friends.svg";
@@ -21,7 +12,6 @@ export default function Thread() {
     content: "",
     id: null,
   });
-  const history = useHistory();
   const [form, setForm] = useState({
     title: "",
     content: "",
@@ -30,7 +20,6 @@ export default function Thread() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [showEntry, setShowEntry] = useState(false);
-  const handleCloseEntry = () => setShowEntry(false);
   const handleShowEntry = (entry) => {
     setShowEntry(true);
     setEditForm({ title: entry.title, content: entry.content });
