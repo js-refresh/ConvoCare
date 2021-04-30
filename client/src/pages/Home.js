@@ -16,20 +16,20 @@ export default function Home() {
         <div className="page-container">
           <h3 style={{textAlign: 'center'}}>What does ConvoCare offer?</h3>
           <div className='row' style={{marginBottom: '25px'}}>
-            <div className='column'><Resources className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
+            <div className='col-12 col-md-4'><Resources className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
               <h5 style={{justifyContent: 'center', display: 'flex'}}>Resources</h5>
               <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
                 We host well-documented topic pages for mental health.
               </h6> 
             </div>
-            <div className='column'>
+            <div className='col-12 col-md-4'>
               <Community className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
               <h5 style={{justifyContent: 'center', display: 'flex'}}>Community</h5>
               <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
                 Our ConvoCare Forum provide a welcome space to connect with our community. 
               </h6>
             </div>
-            <div className='column'><Journal className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
+            <div className='col-12 col-md-4'><Journal className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>
               <h5 style={{justifyContent: 'center', display: 'flex'}}>Introspection</h5>
               <h6 style={{justifyContent: 'center', display: 'flex', textAlign: 'center', margin: '15px'}}>
                 We offer a private journal for you to document anything you'd like. 
