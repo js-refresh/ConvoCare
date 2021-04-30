@@ -10,10 +10,9 @@ import { ReactComponent as Resources } from "../images/resources.svg";
 export default function Home() {
   return (
     <div>
-      <h1 className="page-header">Breaking the silence of Mental Health</h1>
       <div className="page-wrapper">
         <Sidebar />
-        <div className="page-container">
+        <div className="page-container" style={{marginRight: '20vh'}}>
           <h3 style={{textAlign: 'center'}}>What does ConvoCare offer?</h3>
           <div className='row' style={{marginBottom: '25px'}}>
             <div className='col-12 col-md-4'><Resources className='home-svg' style={{height: '100px', width: "auto", display: "block", margin: "auto"}}/>

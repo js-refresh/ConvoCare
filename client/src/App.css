@@ -24,6 +24,14 @@
   color:aquamarine;
 }
 
+.logo {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 100px;
+}
+
+
                   /********************************/
                   /********** Sidebar *************/
                   /********************************/
@@ -81,8 +89,21 @@
   text-align: center;
   color: white;
   background-color: #0288D1;  
-  padding-bottom: 15px
+  padding-top: 15px
 }
+
+@media screen and (max-width: 600px) {
+  .page-header {
+    font-size: small;
+  }
+  .navbar {
+    font-size: small;
+  }
+  .nav-link {
+    padding: 3px
+  }
+}
+
 
 .page-wrapper {
   display: flex;
@@ -95,7 +116,7 @@
   padding-right: 30px;
   font-size: smaller;
   margin-right: 50px;
-  margin-left: 35vh;
+  margin-left: 20vh;
 }
 
 .note {

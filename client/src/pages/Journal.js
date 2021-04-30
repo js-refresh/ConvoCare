@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Modal,
-  Row,
-} from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import "./Journal.css";
 import { ReactComponent as Book } from "../images/book.svg";
 
@@ -63,28 +55,6 @@ export default function Journal() {
     });
   };
 
-  // const [threads, setThreads ] = useState([])
-  // const [rightSide, setRightSide ] = useState({})
-
-  // console.log(threads)
-
-  // const handleRight = (id) => {
-  //     console.log('click')
-  //     fetch(`/api/v1/threads/${id}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //         setRightSide(data)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //     fetch('/api/v1/f')
-  //         .then(res => res.json())
-  //         .then(data => {
-  //             setThreads(data)
-  //         })
-  // }, [])
-
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("/api/v1/journals", {
@@ -110,12 +80,6 @@ export default function Journal() {
         }
       });
   };
-
-  // const handleEditButton = () => {
-  //   console.log('click')
-  //   setShowEntry(false)
-  //   setIsEdit(true)
-  // }
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
@@ -191,9 +155,6 @@ export default function Journal() {
                     New entry
                   </Button>
               </div>  
-                  {
-                    // button opens modal for new entry
-                  }
               {
                 // NEW JOURNAL ENTRY MODAL
               }

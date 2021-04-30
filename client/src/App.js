@@ -7,7 +7,7 @@ import Thread from './pages/Thread'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { Nav } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import Journal from './pages/Journal';
 import Bipolar from './pages/Bipolar';
 import Anxiety from './pages/Anxiety';
@@ -25,6 +25,7 @@ import Tourettes from './pages/Tourettes';
 import ProtectedRoute from './components/ProtectedRoute';
 import VeteranLinks from './pages/VeteranLinks';
 import MentalHealthLinks from './pages/MentalHealthLinks';
+import ConvoCare from './images/ConvoCare.png'
 
 
 
@@ -58,7 +59,8 @@ function App() {
   return (
     <div className="App">
       <div className='navbar'>
-        <Nav justify variant="tabs" defaultActiveKey="/home">
+        <img src={ConvoCare} className='logo' alt='logo'></img>
+        <Nav collapseOnSelect expand='lg' justify variant="tabs" defaultActiveKey="/home">
           <Nav.Item>
             <Link className="nav-link" to="/home">Home</Link>
           </Nav.Item>
@@ -85,7 +87,7 @@ function App() {
             )}
           </Nav.Item>
         </Nav>
-        
+        <h4 className="page-header">Breaking the Silence of Mental Health</h4>
       </div>
       <Switch>
         <Route path='/' exact>
